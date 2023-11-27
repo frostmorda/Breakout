@@ -6,7 +6,7 @@ out vec2 tex;
 uniform mat4 projection;
 uniform mat4 model;
 
-void main()
+void main() 
 {
     tex = tex_coords;
     gl_Position = projection * model * vec4(vertex, 0.0, 1.0);

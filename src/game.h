@@ -19,9 +19,10 @@ public:
         VertexBufferLayout vlo;
         BufferLayout bl{2, GL_FLOAT, GL_FALSE};
         vlo.AddBufferLayout(bl);
+        vlo.AddBufferLayout(bl);
         ResourceManager::LoadVertexBuffer("block", "block");
         ResourceManager::LoadVertexArray("block", "block", vlo);
-        ResourceManager::LoadShader("block", ResourceManager::GetExecutablePath() + "shaders/block_vertex_shader.glsl", ResourceManager::GetExecutablePath() + "block_fragment_shader.glsl");
+        ResourceManager::LoadShader("block", ResourceManager::GetExecutablePath() + "res/shaders/block_vertex_shader.glsl", ResourceManager::GetExecutablePath() + "res/shaders/block_fragment_shader.glsl");
         ResourceManager::LoadTexture("block", ResourceManager::GetExecutablePath() + "res/textures/block.png");
         ResourceManager::LoadGameModel("block", "block", "block", "block", glm::vec3(0, 0, 0), glm::vec3(1, 1, 0), 0, glm::vec3(0.3f, 0.5f, 0.7f), "model", "color", "image");
 
@@ -48,8 +49,10 @@ public:
         shader->Use();
         shader->SetUniform("projection", projection);
         auto gm = ResourceManager::GetGameModel("block");
-        gm->SetSize(glm::vec3(0.3f, 0.3f, 0.3f));
+        gm->SetSize(glm::vec3(200.f, 100.f, 0));
         gm->Draw();
+        glfwSwapBuffers(GetWindow());
+        glfwPollEvents();
     };
 };
 
