@@ -49,7 +49,18 @@ public:
         shader->Use();
         shader->SetUniform("projection", projection);
         auto gm = ResourceManager::GetGameModel("block");
+        gm->SetPosition(glm::vec3(0.f, 0, 0));
         gm->SetSize(glm::vec3(200.f, 100.f, 0));
+        gm->SetColor(glm::vec3(0.3f, 0.5f, 0.7f));
+        gm->Draw();
+        gm->SetPosition(glm::vec3(200.f, 0, 0));
+        gm->SetColor(glm::vec3(0.5f, 0.0f, 0.1f));
+        gm->Draw();
+        gm->SetPosition(glm::vec3(400.f, 0, 0));
+        gm->SetColor(glm::vec3(0.1f, 0.7f, 0.1f));
+        gm->Draw();
+        gm->SetPosition(glm::vec3(600.f, 0, 0));
+        gm->SetColor(glm::vec3(0.5f, 0.7f, 0.2f));
         gm->Draw();
         glfwSwapBuffers(GetWindow());
         glfwPollEvents();
