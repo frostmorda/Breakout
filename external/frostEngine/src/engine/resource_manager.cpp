@@ -68,9 +68,9 @@ std::shared_ptr<VertexBuffer> ResourceManager::GetVertexBuffer(const std::string
     return vertexes_buffers_[vertex_buffer_name];
 }
 
-void ResourceManager::LoadGameModel(const std::string &game_model_name, const std::string &shader_name, const std::string &texture_name, const std::string &vertex_array_name, const glm::vec3 &position, const glm::vec3 &size, const float rotation, const glm::vec3 &color, const std::string &model_matrix_name, const std::string &game_model_color_name)
+void ResourceManager::LoadGameModel(const std::string &game_model_name, const std::string &shader_name, const std::string &texture_name, const std::string &vertex_array_name, const glm::vec3 &position, const glm::vec3 &size, const float rotation, const glm::vec3 &color, const std::string &model_matrix_name, const std::string &game_model_color_name, const std::string &texture_name_shader)
 {
-    game_models_[game_model_name] = std::make_shared<GameModel>(GetShader(shader_name), GetTexture(texture_name), GetVertexArray(vertex_array_name), position, size, rotation, color, model_matrix_name, game_model_color_name);
+    game_models_[game_model_name] = std::make_shared<GameModel>(GetShader(shader_name), GetTexture(texture_name), GetVertexArray(vertex_array_name), position, size, rotation, color, model_matrix_name, game_model_color_name, texture_name_shader);
 }
 
 std::shared_ptr<GameModel> ResourceManager::GetGameModel(const std::string &game_model_name)

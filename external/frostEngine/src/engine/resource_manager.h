@@ -30,7 +30,7 @@ public:
     static void LoadVertexBuffer(const std::string &vertex_buffer_name, const std::string &model_name);
     static std::shared_ptr<VertexBuffer> GetVertexBuffer(const std::string &vertex_buffer_name);
 
-    static void LoadGameModel(const std::string &game_model_name, const std::string &shader_name, const std::string &texture_name, const std::string &vertex_array_name, const glm::vec3 &position, const glm::vec3 &size, const float rotation, const glm::vec3 &color, const std::string &model_matrix_name, const std::string &game_model_color_name);
+    static void LoadGameModel(const std::string &game_model_name, const std::string &shader_name, const std::string &texture_name, const std::string &vertex_array_name, const glm::vec3 &position, const glm::vec3 &size, const float rotation, const glm::vec3 &color, const std::string &model_matrix_name, const std::string &game_model_color_name, const std::string &texture_name_shader);
     static std::shared_ptr<GameModel> GetGameModel(const std::string &game_model_name);
 
     static void SetExecutablePath(const std::string &executable_path);

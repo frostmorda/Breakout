@@ -8,8 +8,8 @@ GameModel::GameModel()
     vertex_array_ = nullptr;
 }
 
-GameModel::GameModel(std::shared_ptr<Shader> shader, std::shared_ptr<Texture> texture, std::shared_ptr<VertexArray> vertex_array, const glm::vec3 &position, const glm::vec3 &size, const float rotation, const glm::vec3 &color, const std::string &model_matrix_name, const std::string &game_model_color_name)
-    : shader_(std::move(shader)), texture_(std::move(texture)), vertex_array_(std::move(vertex_array)), position_(position), size_(size), rotation_(rotation), color_(color), model_matrix_name_(model_matrix_name), game_model_color_name_(game_model_color_name)
+GameModel::GameModel(std::shared_ptr<Shader> shader, std::shared_ptr<Texture> texture, std::shared_ptr<VertexArray> vertex_array, const glm::vec3 &position, const glm::vec3 &size, const float rotation, const glm::vec3 &color, const std::string &model_matrix_name, const std::string &game_model_color_name, const std::string &texture_name)
+    : shader_(std::move(shader)), texture_(std::move(texture)), vertex_array_(std::move(vertex_array)), position_(position), size_(size), rotation_(rotation), color_(color), model_matrix_name_(model_matrix_name), game_model_color_name_(game_model_color_name), texture_name_(texture_name)
 {
 }
 
@@ -55,6 +55,7 @@ GameModel::~GameModel()
 void GameModel::Draw()
 {
     shader_->Use();
+    shader_->SetUniform(texture_name_, 0);
     Transformation();
     if (texture_)
     {

@@ -46,7 +46,7 @@ public:
         ResourceManager::LoadVertexBuffer("cube", "cube");
         ResourceManager::LoadVertexArray("cube", "cube", vlo);
         ResourceManager::LoadShader("cube", ResourceManager::GetExecutablePath() + "vertex.glsl", ResourceManager::GetExecutablePath() + "fragment.glsl");
-        ResourceManager::LoadGameModel("cube", "cube", "cube", "cube", glm::vec3(0, 0, 0), glm::vec3(1, 1, 1), 0, glm::vec3(0.3f, 0.5f, 0.7f), "modelMatrix", "color");
+        ResourceManager::LoadGameModel("cube", "cube", "cube", "cube", glm::vec3(0, 0, 0), glm::vec3(1, 1, 1), 0, glm::vec3(0.3f, 0.5f, 0.7f), "modelMatrix", "color", "tex");
         ResourceManager::LoadCamera("camera", Camera(glm::vec3(0.0, 0.f, 3.f)));
 
         glfwSetFramebufferSizeCallback(GetWindow(), WindowSizeCallback);
@@ -80,6 +80,9 @@ public:
     void Update(float delta_time){};
     void Render()
     {
+        glClearColor(0, 0, 0, 1.f);
+        glEnable(GL_DEPTH_TEST);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         float curent_frame = glfwGetTime();
         SetDeltaTime(curent_frame - GetLastFrame());
         SetLastFrame(curent_frame);
@@ -105,6 +108,8 @@ public:
                 }
             }
         }
+        glfwSwapBuffers(GetWindow());
+        glfwPollEvents();
     };
 };
 int main(int argc, char **argv)
@@ -114,13 +119,8 @@ int main(int argc, char **argv)
     g.Initialization();
     while (!glfwWindowShouldClose(g.GetWindow()))
     {
-        glClearColor(0, 0, 0, 1.f);
-        glEnable(GL_DEPTH_TEST);
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         g.ProcessInpud();
         g.Render();
-        glfwSwapBuffers(g.GetWindow());
-        glfwPollEvents();
     }
     return 0;
 }
