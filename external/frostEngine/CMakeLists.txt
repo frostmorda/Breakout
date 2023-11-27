@@ -28,4 +28,5 @@ target_link_libraries(${PROJECT_NAME}_lib glfw)
 
 add_subdirectory(external/glad)
 target_link_libraries(${PROJECT_NAME}_lib glad)
-include_directories(external/glm)
+add_subdirectory(external/glm)
+target_link_libraries(${PROJECT_NAME}_lib glm)
