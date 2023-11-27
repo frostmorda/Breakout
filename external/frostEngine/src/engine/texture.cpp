@@ -25,7 +25,7 @@ Texture::Texture(const std::string &path, GLuint wrap_s, GLuint wrap_t, GLuint m
             format = GL_RGBA;
         }
         Bind();
-        glTexImage2D(GL_TEXTURE_2D, 0, format, 0, widht, height, 0, GL_UNSIGNED_BYTE, data);
+        glTexImage2D(GL_TEXTURE_2D, 0, format, widht, height, 0, format, GL_UNSIGNED_BYTE, data);
         glGenerateMipmap(GL_TEXTURE_2D);
 
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, wrap_s_);
