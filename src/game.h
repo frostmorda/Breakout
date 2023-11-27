@@ -13,7 +13,7 @@ class Game : public IGame
 public:
     Game() : IGame() {}
     ~Game() {}
-    void Initialization()
+    void Initialization() override
     {
         ResourceManager::LoadGameModelData("block", ResourceManager::GetExecutablePath() + "res/models/block");
         VertexBufferLayout vlo;
@@ -27,15 +27,15 @@ public:
 
         glfwSetFramebufferSizeCallback(GetWindow(), WindowSizeCallback);
     };
-    void ProcessInpud()
+    void ProcessInpud() override
     {
         if (glfwGetKey(GetWindow(), GLFW_KEY_ESCAPE))
         {
             glfwSetWindowShouldClose(GetWindow(), true);
         }
     };
-    void Update(float delta_time){};
-    void Render()
+    void Update(float delta_time) override{};
+    void Render() override
     {
         glClearColor(0, 0, 0, 1.f);
         glEnable(GL_DEPTH_TEST);
@@ -44,13 +44,12 @@ public:
         SetDeltaTime(curent_frame - GetLastFrame());
         SetLastFrame(curent_frame);
         glm::mat4 projection = glm::ortho(0.0f, static_cast<float>(GetWidth()), static_cast<float>(GetHeight()), 0.0f, -1.0f, 1.0f);
-        auto view = ResourceManager::GetCamera("camera")->GetViewMatrix();
-        auto shader = ResourceManager::GetShader("cube");
+        auto shader = ResourceManager::GetShader("block");
         shader->Use();
         shader->SetUniform("projection", projection);
-        shader->SetUniform("view", view);
-        auto gm = ResourceManager::GetGameModel("cube");
+        auto gm = ResourceManager::GetGameModel("block");
         gm->SetSize(glm::vec3(0.3f, 0.3f, 0.3f));
+        gm->Draw();
     };
 };
 
