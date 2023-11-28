@@ -117,7 +117,7 @@ int main(int argc, char **argv)
     ResourceManager::SetExecutablePath(argv[0]);
     Game g;
     g.Initialization();
-    while (!glfwWindowShouldClose(g.GetWindow()))
+    while (g.IsWindowClosed())
     {
         g.ProcessInpud();
         g.Render();

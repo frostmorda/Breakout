@@ -39,6 +39,8 @@ public:
     const int GetWidth() const { return width_; }
     const int GetHeight() const { return height_; }
 
+    const bool IsWindowClosed() const;
+
 private:
     unsigned int width_;
     unsigned int height_;

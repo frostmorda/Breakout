@@ -101,6 +101,7 @@ void ResourceManager::LoadGameModelData(const std::string &modle_name, const std
     std::stringstream buffer;
     buffer << f.rdbuf();
     std::string data = buffer.str();
+    f.close();
     size_t found = 0;
     size_t start = 0;
 

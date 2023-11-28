@@ -24,6 +24,7 @@ GameModel::GameModel(GameModel &&other)
     color_ = other.color_;
     model_matrix_name_ = other.model_matrix_name_;
     game_model_color_name_ = other.game_model_color_name_;
+    texture_name_ = other.texture_name_;
 
     other.shader_ = nullptr;
     other.texture_ = nullptr;
@@ -41,6 +42,7 @@ GameModel &GameModel::operator=(GameModel &&other)
     color_ = other.color_;
     model_matrix_name_ = other.model_matrix_name_;
     game_model_color_name_ = other.game_model_color_name_;
+    texture_name_ = other.texture_name_;
 
     other.shader_ = nullptr;
     other.texture_ = nullptr;

@@ -29,3 +29,8 @@ IGame::~IGame()
 {
     glfwTerminate();
 }
+
+const bool IGame::IsWindowClosed() const
+{
+    return !glfwWindowShouldClose(window_);
+}
