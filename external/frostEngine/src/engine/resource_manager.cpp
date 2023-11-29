@@ -91,31 +91,14 @@ std::string ResourceManager::GetExecutablePath()
 
 void ResourceManager::LoadGameModelData(const std::string &modle_name, const std::string &path)
 {
-    std::ifstream f;
-    f.open(path);
-    if (!f.is_open())
+    std::vector<std::vector<float>> data;
+    DataFromFile(path, data);
+    for (auto &row : data)
     {
-        std::cerr << "not open!" << std::endl;
-        return;
-    }
-    std::stringstream buffer;
-    buffer << f.rdbuf();
-    std::string data = buffer.str();
-    f.close();
-    size_t found = 0;
-    size_t start = 0;
-
-    while (found != std::string::npos)
-    {
-        std::string num = data.substr(start);
-        if (isdigit(num[0]) || num[0] == '-')
+        for (auto &val : row)
         {
-            float val = stof(num);
-            std::cout << val << " ";
             game_model_data_[modle_name].push_back(val);
         }
-        found = data.find_first_of(" \n", found + 1);
-        start = found + 1;
     }
 }
 

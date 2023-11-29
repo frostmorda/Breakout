@@ -44,6 +44,9 @@ public:
     static void LoadCamera(const std::string &camera_name, Camera camera);
     static std::shared_ptr<Camera> &GetCamera(const std::string &camera_name);
 
+    template <class T>
+    static void DataFromFile(const std::string &file_path, std::vector<std::vector<T>> &data);
+
 private:
     static std::unordered_map<std::string, std::shared_ptr<Shader>> shaders_;
     static std::unordered_map<std::string, std::shared_ptr<Texture>> textures_;
@@ -55,3 +58,29 @@ private:
     static std::string executable_path_;
 };
 #endif // SRC_ENGINE_RESOURCE_MANAGER_H_
+
+template <class T>
+inline void ResourceManager::DataFromFile(const std::string &file_path, std::vector<std::vector<T>> &data)
+{
+    std::ifstream file(file_path);
+    std::string line;
+    if (file)
+    {
+
+        while (std::getline(file, line))
+        {
+            std::istringstream string_stream(line);
+            T val;
+            std::vector<T> row;
+            while (string_stream >> val)
+            {
+                row.push_back(val);
+            }
+            data.push_back(row);
+        }
+    }
+    else
+    {
+        std::cerr << "Cant find file!" << std::endl;
+    }
+}
