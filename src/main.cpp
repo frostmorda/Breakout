@@ -4,7 +4,7 @@
 int main(int argc, char **argv)
 {
     ResourceManager::SetExecutablePath(argv[0]);
-    Game g(800, 600, "BreakOut");
+    Game g(400, 800, "BreakOut");
     g.Initialization();
     while (g.IsWindowClosed())
     {

@@ -1,4 +1,5 @@
 #include "game.h"
+#include "game_level.h"
 
 void WindowSizeCallback(GLFWwindow *window, int width, int height)
 {
@@ -42,13 +43,8 @@ void Game::Render()
     shader->Use();
     shader->SetUniform("projection", projection);
     auto gm = ResourceManager::GetGameModel("block");
-    gm->SetSize(glm::vec3(GetWidth() / 20.f, GetHeight() / 20.f, 0));
-    for (int i = 0; i < 20; ++i)
-    {
-        gm->SetPosition(glm::vec3(GetWidth() / 20.f * i, 0, 0));
-        gm->SetColor(glm::vec3(i / 30.f + 0.2f, i / 20.f + 0.1f, i / 15.f + 0.3f));
-        gm->Draw();
-    }
+    GameLevel gl(ResourceManager::GetExecutablePath() + "/res/levels/level1", gm, GetWidth(), GetHeight() / 2);
+    gl.Draw();
     glfwSwapBuffers(GetWindow());
     glfwPollEvents();
 }

@@ -3,7 +3,8 @@ set(PROJECT_NAME Breakout)
 project(${PROJECT_NAME})
 set(SOURCES
     src/main.cpp
-    src/game.cpp)
+    src/game.cpp
+    src/game_level.cpp)
 add_executable(${PROJECT_NAME} ${SOURCES})
 target_link_libraries(${PROJECT_NAME} frostEngine_lib)
 add_subdirectory(external/frostEngine)
