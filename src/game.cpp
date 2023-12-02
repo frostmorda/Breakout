@@ -20,7 +20,7 @@ void Game::Initialization()
     auto gm = ResourceManager::GetGameModel("block");
 
     game_level_ = std::make_shared<GameLevel>(ResourceManager::GetExecutablePath() + "/res/levels/level1", gm, GetWidth(), GetHeight() / 2);
-    player_ = std::make_shared<Player>(gm, glm::vec3(GetWidth() / 2.f - 37.5f, GetHeight() - 10.f, 0), glm::vec3(75, 10, 0), glm::vec3(0.2f, 0.5f, 0.4f), 1);
+    player_ = std::make_shared<Player>(gm, glm::vec3(GetWidth() / 2.f - 37.5f, GetHeight() - 10.f, 0), glm::vec3(75, 10, 0), glm::vec3(0.2f, 0.5f, 0.4f), 5);
 
     glfwSetFramebufferSizeCallback(GetWindow(), WindowSizeCallback);
 }
@@ -34,12 +34,20 @@ void Game::ProcessInpud()
     if (glfwGetKey(GetWindow(), GLFW_KEY_A))
     {
         auto position = player_->GetPosition();
-        position.x -= player_->GetVelocity();
+        if (position.x >= 0)
+        {
+            position.x -= player_->GetVelocity();
+            player_->SetPosition(position);
+        }
     }
     if (glfwGetKey(GetWindow(), GLFW_KEY_D))
     {
         auto position = player_->GetPosition();
-        position.x += player_->GetVelocity();
+        if (position.x <= GetWidth() - player_->GetSize().x)
+        {
+            position.x += player_->GetVelocity();
+            player_->SetPosition(position);
+        }
     }
 }
 
