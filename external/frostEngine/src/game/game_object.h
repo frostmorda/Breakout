@@ -13,8 +13,11 @@ public:
     ~GameObject();
     void Draw();
     void SetPosition(glm::vec3 position) { position_ = position; }
+    const glm::vec3 GetPosition() const { return position_; }
     void SetSize(glm::vec3 size) { size_ = size; }
+    const glm::vec3 GetSize() const { return size_; }
     void SetColor(glm::vec3 color) { color_ = color; }
+    const glm::vec3 GetColor() const { return color_; }
 
 private:
     void Update();
