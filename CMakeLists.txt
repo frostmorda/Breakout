@@ -5,7 +5,8 @@ set(SOURCES
     src/main.cpp
     src/game.cpp
     src/game_level.cpp
-    src/player.cpp)
+    src/player.cpp
+    src/ball.cpp)
 add_executable(${PROJECT_NAME} ${SOURCES})
 target_link_libraries(${PROJECT_NAME} frostEngine_lib)
 add_subdirectory(external/frostEngine)

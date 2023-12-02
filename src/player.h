@@ -10,6 +10,8 @@ public:
     ~Player() {}
     const float GetVelocity() const { return velocity_; }
     void SetVelocity(float velocity) { velocity_ = velocity; }
+    void MoveLeft();
+    void MoveRight(float width);
 
 private:
     float velocity_;

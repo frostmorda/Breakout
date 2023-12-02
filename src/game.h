@@ -4,6 +4,7 @@
 #include "../external/frostEngine/src/engine/resource_manager.h"
 #include "game_level.h"
 #include "player.h"
+#include "ball.h"
 
 class Game : public IGame
 {
@@ -19,6 +20,7 @@ public:
 private:
     std::shared_ptr<Player> player_;
     std::shared_ptr<GameLevel> game_level_;
+    std::shared_ptr<Ball> ball_;
 };
 
 #endif // SRC_GAME_H_
