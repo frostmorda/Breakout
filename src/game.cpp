@@ -33,9 +33,13 @@ void Game::ProcessInpud()
     }
     if (glfwGetKey(GetWindow(), GLFW_KEY_A))
     {
+        auto position = player_->GetPosition();
+        position.x -= player_->GetVelocity();
     }
     if (glfwGetKey(GetWindow(), GLFW_KEY_D))
     {
+        auto position = player_->GetPosition();
+        position.x += player_->GetVelocity();
     }
 }
 
