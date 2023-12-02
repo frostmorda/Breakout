@@ -12,6 +12,9 @@ public:
     GameObject(std::shared_ptr<GameModel> game_model, glm::vec3 position, glm::vec3 size, glm::vec3 color, float rotation = 0.f);
     ~GameObject();
     void Draw();
+    void SetPosition(glm::vec3 position) { position_ = position; }
+    void SetSize(glm::vec3 size) { size_ = size; }
+    void SetColor(glm::vec3 color) { color_ = color; }
 
 private:
     void Update();
