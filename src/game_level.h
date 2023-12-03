@@ -9,6 +9,7 @@ public:
     GameLevel(std::string &file_path, std::shared_ptr<GameModel> game_model, unsigned int level_width, unsigned int level_height);
     ~GameLevel() {}
     void Draw();
+    const std::vector<std::shared_ptr<GameObject>> GetGameObjectsList() const { return objects_; }
 
 private:
     std::vector<std::shared_ptr<GameObject>> objects_;

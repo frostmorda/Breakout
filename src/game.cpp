@@ -81,4 +81,14 @@ void Game::Render()
 
 void Game::Collision()
 {
+    for (auto &block : game_level_->GetGameObjectsList())
+    {
+        if (!block->IsDestroyed())
+        {
+            if (CheckBoxCollision(ball_, block))
+            {
+                block->Destroy();
+            }
+        }
+    }
 }
