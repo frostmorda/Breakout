@@ -11,7 +11,7 @@ public:
     void Draw();
 
 private:
-    std::vector<GameObject> objects_;
+    std::vector<std::shared_ptr<GameObject>> objects_;
 };
 
 #endif // SRC_GAME_LEVEL_H_

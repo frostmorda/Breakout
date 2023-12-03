@@ -25,7 +25,7 @@ GameLevel::GameLevel(std::string &file_path, std::shared_ptr<GameModel> game_mod
                 {
                     color = glm::vec3(1, 0.643f, 0.255f);
                 }
-                objects_.emplace_back(game_model, position, size, color);
+                objects_.push_back(std::make_shared<GameObject>(game_model, position, size, color));
             }
         }
     }
@@ -35,6 +35,6 @@ void GameLevel::Draw()
 {
     for (auto &block : objects_)
     {
-        block.Draw();
+        block->Draw();
     }
 }
