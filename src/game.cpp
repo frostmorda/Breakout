@@ -78,3 +78,7 @@ void Game::Render()
     glfwSwapBuffers(GetWindow());
     glfwPollEvents();
 }
+
+void Game::Collision()
+{
+}
