@@ -27,6 +27,7 @@ public:
     virtual void ProcessInpud() = 0;
     virtual void Update(float delta_time) = 0;
     virtual void Render() = 0;
+    virtual void Collision() = 0;
 
     GLFWwindow *GetWindow() { return window_; }
 
@@ -40,6 +41,8 @@ public:
     const int GetHeight() const { return height_; }
 
     const bool IsWindowClosed() const;
+
+    bool CheckBoxCollision(const GameObject &first, const GameObject &second);
 
 private:
     unsigned int width_;
