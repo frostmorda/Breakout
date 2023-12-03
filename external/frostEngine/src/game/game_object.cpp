@@ -11,8 +11,11 @@ GameObject::~GameObject()
 
 void GameObject::Draw()
 {
-    Update();
-    game_model_->Draw();
+    if (!is_destroyed)
+    {
+        Update();
+        game_model_->Draw();
+    }
 }
 
 void GameObject::Update()
