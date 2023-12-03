@@ -111,6 +111,7 @@ public:
         glfwSwapBuffers(GetWindow());
         glfwPollEvents();
     };
+    void Collision() {}
 };
 int main(int argc, char **argv)
 {
