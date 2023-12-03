@@ -72,6 +72,7 @@ void Game::Render()
         ball_->Move(GetDeltaTime(), GetWidth());
     }
     ball_->Draw();
+    Collision();
     game_level_->Draw();
     player_->Draw();
 
