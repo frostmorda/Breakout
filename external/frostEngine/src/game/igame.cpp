@@ -35,9 +35,9 @@ const bool IGame::IsWindowClosed() const
     return !glfwWindowShouldClose(window_);
 }
 
-bool IGame::CheckBoxCollision(const GameObject &first, const GameObject &second)
+bool IGame::CheckBoxCollision(const std::shared_ptr<GameObject> &first, const std::shared_ptr<GameObject> &second)
 {
-    bool collision_x_axis = first.GetPosition().x + first.GetSize().x >= second.GetPosition().x && second.GetPosition().x + second.GetSize().x >= first.GetPosition().x;
-    bool collision_y_axis = first.GetPosition().y + first.GetSize().y >= second.GetPosition().y && second.GetPosition().y + second.GetSize().y >= first.GetPosition().y;
+    bool collision_x_axis = first->GetPosition().x + first->GetSize().x >= second->GetPosition().x && second->GetPosition().x + second->GetSize().x >= first->GetPosition().x;
+    bool collision_y_axis = first->GetPosition().y + first->GetSize().y >= second->GetPosition().y && second->GetPosition().y + second->GetSize().y >= first->GetPosition().y;
     return collision_x_axis && collision_y_axis;
 }

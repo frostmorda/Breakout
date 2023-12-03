@@ -42,7 +42,7 @@ public:
 
     const bool IsWindowClosed() const;
 
-    bool CheckBoxCollision(const GameObject &first, const GameObject &second);
+    bool CheckBoxCollision(const std::shared_ptr<GameObject> &first, const std::shared_ptr<GameObject> &second);
 
 private:
     unsigned int width_;
