@@ -22,7 +22,7 @@ void Game::Initialization()
 
     game_level_ = std::make_shared<GameLevel>(ResourceManager::GetExecutablePath() + "/res/levels/level1", gm, GetWidth(), GetHeight() / 2);
     player_ = std::make_shared<Player>(gm, glm::vec3(GetWidth() / 2.f - 37.5f, GetHeight() - 10.f, 0), glm::vec3(75, 10, 0), glm::vec3(0.2f, 0.5f, 0.4f), 200);
-    ball_ = std::make_shared<Ball>(gm, player_->GetPosition() - glm::vec3(-player_->GetSize().x / 2 + 7, 14, 0), 7.0f, glm::vec3(1, 1, 0), glm::vec2(-100.f));
+    ball_ = std::make_shared<Ball>(gm, player_->GetPosition() - glm::vec3(-player_->GetSize().x / 2 + 7, 14, 0), 7.0f, glm::vec3(1, 1, 0), glm::vec2(-300.f));
 
     glfwSetFramebufferSizeCallback(GetWindow(), WindowSizeCallback);
 }
@@ -112,7 +112,19 @@ void Game::BallCollusion(std::shared_ptr<GameObject> game_object)
             ball_->SetVelocity(-ball_->GetVelocity());
             if (game_object == player_)
             {
-                ball_->SetVelocity(glm::vec2(ball_->GetVelocity().x, -glm::abs(ball_->GetVelocity().y)));
+                float player_center = player_->GetPosition().x + player_->GetSize().x / 2;
+                float distance = ball_->GetPosition().x + ball_->GetSize().x / 2 - player_center;
+                float ball_velocity_x;
+                if (distance > 0)
+                {
+                    ball_velocity_x = -ball_->GetVelocity().x;
+                }
+                else
+                {
+                    ball_velocity_x = ball_->GetVelocity().x;
+                }
+                float ball_velocity_y = -glm::abs(ball_->GetVelocity().y);
+                ball_->SetVelocity(glm::vec2(ball_velocity_x, ball_velocity_y));
             }
         }
     }
