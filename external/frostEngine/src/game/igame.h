@@ -42,8 +42,6 @@ public:
 
     const bool IsWindowClosed() const;
 
-    bool CheckBoxCollision(const std::shared_ptr<GameObject> &first, const std::shared_ptr<GameObject> &second);
-
 private:
     unsigned int width_;
     unsigned int height_;
