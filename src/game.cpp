@@ -20,7 +20,7 @@ void Game::Initialization()
     auto gm = ResourceManager::GetGameModel("block");
 
     game_level_ = std::make_shared<GameLevel>(ResourceManager::GetExecutablePath() + "/res/levels/level1", gm, GetWidth(), GetHeight() / 2);
-    player_ = std::make_shared<Player>(gm, glm::vec3(GetWidth() / 2.f - 37.5f, GetHeight() - 10.f, 0), glm::vec3(75, 10, 0), glm::vec3(0.2f, 0.5f, 0.4f), 5);
+    player_ = std::make_shared<Player>(gm, glm::vec3(GetWidth() / 2.f - 37.5f, GetHeight() - 10.f, 0), glm::vec3(75, 10, 0), glm::vec3(0.2f, 0.5f, 0.4f), 200);
     ball_ = std::make_shared<Ball>(gm, player_->GetPosition() - glm::vec3(-player_->GetSize().x / 2 + 7, 14, 0), 7.0f, glm::vec3(1, 1, 0), glm::vec2(-100.f));
 
     glfwSetFramebufferSizeCallback(GetWindow(), WindowSizeCallback);
@@ -34,7 +34,7 @@ void Game::ProcessInpud()
     }
     if (glfwGetKey(GetWindow(), GLFW_KEY_A))
     {
-        player_->MoveLeft();
+        player_->MoveLeft(GetDeltaTime());
         if (ball_->IsStuck())
         {
             ball_->SetPosition(player_->GetPosition() - glm::vec3(-player_->GetSize().x / 2 + 7, 14, 0));
@@ -42,7 +42,7 @@ void Game::ProcessInpud()
     }
     if (glfwGetKey(GetWindow(), GLFW_KEY_D))
     {
-        player_->MoveRight(GetWidth());
+        player_->MoveRight(GetWidth(), GetDeltaTime());
         if (ball_->IsStuck())
         {
             ball_->SetPosition(player_->GetPosition() - glm::vec3(-player_->GetSize().x / 2 + 7, 14, 0));
