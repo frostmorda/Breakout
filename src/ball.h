@@ -10,6 +10,8 @@ public:
     const bool IsStuck() const { return stuck_; }
     void StuckState(bool stuck_state) { stuck_ = stuck_state; }
     void Move(float dt, unsigned int width);
+    const glm::vec2 GetVelocity() const { return velocity_; }
+    void SetVelocity(glm::vec2 velocity) { velocity_ = velocity; }
 
 private:
     glm::vec2 velocity_;
