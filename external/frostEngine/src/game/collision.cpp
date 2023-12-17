@@ -1,6 +1,6 @@
-#include "collusion.h"
+#include "collision.h"
 
-CollusionInfo Collusion::CheckBoxCollision(const std::shared_ptr<GameObject> &first, const std::shared_ptr<GameObject> &second)
+CollisionInfo Collision::CheckBoxCollision(const std::shared_ptr<GameObject> &first, const std::shared_ptr<GameObject> &second)
 {
     glm::vec2 first_center(first->GetPosition().x + first->GetSize().x / 2, first->GetPosition().y + first->GetSize().y / 2);
     glm::vec2 second_center(second->GetPosition().x + second->GetSize().x / 2, second->GetPosition().y + second->GetSize().y / 2);
@@ -15,7 +15,7 @@ CollusionInfo Collusion::CheckBoxCollision(const std::shared_ptr<GameObject> &fi
     return std::make_tuple(false, Direction::UP, glm::vec2(0, 0));
 }
 
-Direction Collusion::VectorDirection(glm::vec2 target)
+Direction Collision::VectorDirection(glm::vec2 target)
 {
     std::vector<glm::vec2> direction{
         glm::vec2(0.0f, 1.0f),

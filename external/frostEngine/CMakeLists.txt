@@ -12,7 +12,7 @@ set(SOURCES
     src/engine/game_model.cpp
     src/engine/camera.cpp
     src/game/igame.cpp
-    src/game/collusion.cpp
+    src/game/collision.cpp
     src/game/game_object.cpp)
 add_library(${PROJECT_NAME}_lib STATIC ${SOURCES})
 add_executable(${PROJECT_NAME} src/main.cpp)
