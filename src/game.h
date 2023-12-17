@@ -22,7 +22,7 @@ private:
     std::shared_ptr<Player> player_;
     std::shared_ptr<GameLevel> game_level_;
     std::shared_ptr<Ball> ball_;
-    void BallCollusion(std::shared_ptr<GameObject> game_object);
+    void BallCollision(std::shared_ptr<GameObject> game_object);
 };
 
 #endif // SRC_GAME_H_

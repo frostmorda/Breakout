@@ -1,5 +1,5 @@
 #include "game.h"
-#include "../external/frostEngine/src/game/collusion.h"
+#include "../external/frostEngine/src/game/collision.h"
 
 void WindowSizeCallback(GLFWwindow *window, int width, int height)
 {
@@ -83,19 +83,19 @@ void Game::Render()
 
 void Game::Collision()
 {
-    BallCollusion(player_);
+    BallCollision(player_);
     for (auto &block : game_level_->GetGameObjectsList())
     {
         if (!block->IsDestroyed())
         {
-            BallCollusion(block);
+            BallCollision(block);
         }
     }
 }
 
-void Game::BallCollusion(std::shared_ptr<GameObject> game_object)
+void Game::BallCollision(std::shared_ptr<GameObject> game_object)
 {
-    CollusionInfo col_info = Collusion::CheckBoxCollision(ball_, game_object);
+    CollisionInfo col_info = Collision::CheckBoxCollision(ball_, game_object);
     if (std::get<0>(col_info))
     {
         if (game_object != player_)
