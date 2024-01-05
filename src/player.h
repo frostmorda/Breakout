@@ -6,14 +6,18 @@
 class Player : public GameObject
 {
 public:
-    Player(GameModel* game_model, glm::vec3 position, glm::vec3 size, glm::vec3 color, float velocity, float rotation = 0.f) : GameObject(game_model, position, size, color, rotation), velocity_(velocity) {}
+    Player(GameModel *game_model, glm::vec3 position, glm::vec3 size, glm::vec3 color, float velocity, float rotation = 0.f) : GameObject(game_model, position, size, color, rotation), velocity_(velocity) {}
     ~Player() {}
     const float GetVelocity() const { return velocity_; }
     void SetVelocity(float velocity) { velocity_ = velocity; }
     void MoveLeft(float dt);
     void MoveRight(float width, float dt);
+    const int GetHealth() const { return health_; }
+    void LoseHealth() { --health_; }
+    void UpHealth() { ++health_; }
 
 private:
     float velocity_;
+    int health_ = 3;
 };
 #endif // SRC_PLAYER_H_

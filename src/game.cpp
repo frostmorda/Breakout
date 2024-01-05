@@ -17,12 +17,16 @@ void Game::Initialization()
     ResourceManager::LoadVertexArray("block", "block", vlo);
     ResourceManager::LoadShader("block", ResourceManager::GetExecutablePath() + "res/shaders/block_vertex_shader.glsl", ResourceManager::GetExecutablePath() + "res/shaders/block_fragment_shader.glsl");
     ResourceManager::LoadTexture("block", ResourceManager::GetExecutablePath() + "res/textures/block.png");
+    ResourceManager::LoadTexture("background", ResourceManager::GetExecutablePath() + "res/textures/background.png");
     ResourceManager::LoadGameModel("block", "block", "block", "block", glm::vec3(0, 0, 0), glm::vec3(1, 1, 0), 0, glm::vec3(0.3f, 0.5f, 0.7f), "model", "color", "image");
+    ResourceManager::LoadGameModel("background", "block", "background", "block", glm::vec3(0, 0, 0), glm::vec3(1, 1, 0), 0, glm::vec3(0.3f, 0.5f, 0.7f), "model", "color", "image");
     auto gm = ResourceManager::GetGameModel("block");
+    auto bg = ResourceManager::GetGameModel("background");
 
     game_level_ = std::make_unique<GameLevel>(ResourceManager::GetExecutablePath() + "/res/levels/level1", gm, GetWidth(), GetHeight() / 2);
     player_ = std::make_unique<Player>(gm, glm::vec3(GetWidth() / 2.f - 37.5f, GetHeight() - 10.f, 0), glm::vec3(75, 10, 0), glm::vec3(0.2f, 0.5f, 0.4f), 200);
     ball_ = std::make_unique<Ball>(gm, player_->GetPosition() - glm::vec3(-player_->GetSize().x / 2 + 7, 14, 0), 7.0f, glm::vec3(1, 1, 0), glm::vec2(-300.f));
+    background_ = std::make_unique<GameObject>(bg, glm::vec3(0, 0, 0), glm::vec3(GetWidth(), GetHeight(), 0), glm::vec3(1, 1, 1));
 
     glfwSetFramebufferSizeCallback(GetWindow(), WindowSizeCallback);
 }
@@ -33,7 +37,7 @@ void Game::ProcessInpud()
     {
         glfwSetWindowShouldClose(GetWindow(), true);
     }
-    if (glfwGetKey(GetWindow(), GLFW_KEY_A))
+    if (glfwGetKey(GetWindow(), GLFW_KEY_A) || glfwGetKey(GetWindow(), GLFW_KEY_LEFT))
     {
         player_->MoveLeft(GetDeltaTime());
         if (ball_->IsStuck())
@@ -41,7 +45,7 @@ void Game::ProcessInpud()
             ball_->SetPosition(player_->GetPosition() - glm::vec3(-player_->GetSize().x / 2 + 7, 14, 0));
         }
     }
-    if (glfwGetKey(GetWindow(), GLFW_KEY_D))
+    if (glfwGetKey(GetWindow(), GLFW_KEY_D) || glfwGetKey(GetWindow(), GLFW_KEY_RIGHT))
     {
         player_->MoveRight(GetWidth(), GetDeltaTime());
         if (ball_->IsStuck())
@@ -68,14 +72,22 @@ void Game::Render()
     shader->Use();
     shader->SetUniform("projection", projection);
 
-    if (!ball_->IsStuck())
+    if (!ball_->IsStuck() && player_->GetHealth() > 0)
     {
-        ball_->Move(GetDeltaTime(), GetWidth());
+        ball_->Move(GetDeltaTime(), GetWidth(), GetHeight());
         Collision();
+        if (ball_->IsBallOut())
+        {
+            player_->LoseHealth();
+            ball_->StuckState(true);
+            ball_->BallOutState(false);
+            ball_->SetPosition(player_->GetPosition() - glm::vec3(-player_->GetSize().x / 2 + 7, 14, 0));
+        }
     }
     ball_->Draw();
     game_level_->Draw();
     player_->Draw();
+    background_->Draw();
 
     glfwSwapBuffers(GetWindow());
     glfwPollEvents();

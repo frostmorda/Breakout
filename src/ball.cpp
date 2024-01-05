@@ -1,6 +1,6 @@
 #include "ball.h"
 
-void Ball::Move(float dt, unsigned int width)
+void Ball::Move(float dt, unsigned int width, unsigned int height)
 {
     auto velocity = dt * velocity_;
     auto position = GetPosition();
@@ -20,6 +20,10 @@ void Ball::Move(float dt, unsigned int width)
     {
         velocity_.y = -velocity_.y;
         position.y = 0;
+    }
+    else if (position.y > height)
+    {
+        ball_out_ = true;
     }
     SetPosition(position);
 }
