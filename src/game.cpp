@@ -42,7 +42,7 @@ void Game::ProcessInpud()
         player_->MoveLeft(GetDeltaTime());
         if (ball_->IsStuck())
         {
-            ball_->SetPosition(player_->GetPosition() - glm::vec3(-player_->GetSize().x / 2 + 7, 14, 0));
+            SetBallToPlayer();
         }
     }
     if (glfwGetKey(GetWindow(), GLFW_KEY_D) || glfwGetKey(GetWindow(), GLFW_KEY_RIGHT))
@@ -50,7 +50,7 @@ void Game::ProcessInpud()
         player_->MoveRight(GetWidth(), GetDeltaTime());
         if (ball_->IsStuck())
         {
-            ball_->SetPosition(player_->GetPosition() - glm::vec3(-player_->GetSize().x / 2 + 7, 14, 0));
+            SetBallToPlayer();
         }
     }
     if (glfwGetKey(GetWindow(), GLFW_KEY_SPACE))
@@ -81,7 +81,7 @@ void Game::Render()
             player_->LoseHealth();
             ball_->StuckState(true);
             ball_->BallOutState(false);
-            ball_->SetPosition(player_->GetPosition() - glm::vec3(-player_->GetSize().x / 2 + 7, 14, 0));
+            SetBallToPlayer();
         }
     }
     ball_->Draw();
@@ -140,4 +140,9 @@ void Game::BallCollision(GameObject *game_object)
             }
         }
     }
+}
+
+void Game::SetBallToPlayer()
+{
+    ball_->SetPosition(player_->GetPosition() - glm::vec3(-player_->GetSize().x / 2 + 7, 14, 0));
 }

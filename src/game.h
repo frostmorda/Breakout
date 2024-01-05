@@ -24,6 +24,7 @@ private:
     std::unique_ptr<Ball> ball_;
     std::unique_ptr<GameObject> background_;
     void BallCollision(GameObject *game_object);
+    void SetBallToPlayer();
 };
 
 #endif // SRC_GAME_H_
