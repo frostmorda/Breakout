@@ -20,9 +20,9 @@ void Game::Initialization()
     ResourceManager::LoadGameModel("block", "block", "block", "block", glm::vec3(0, 0, 0), glm::vec3(1, 1, 0), 0, glm::vec3(0.3f, 0.5f, 0.7f), "model", "color", "image");
     auto gm = ResourceManager::GetGameModel("block");
 
-    game_level_ = std::make_shared<GameLevel>(ResourceManager::GetExecutablePath() + "/res/levels/level1", gm, GetWidth(), GetHeight() / 2);
-    player_ = std::make_shared<Player>(gm, glm::vec3(GetWidth() / 2.f - 37.5f, GetHeight() - 10.f, 0), glm::vec3(75, 10, 0), glm::vec3(0.2f, 0.5f, 0.4f), 200);
-    ball_ = std::make_shared<Ball>(gm, player_->GetPosition() - glm::vec3(-player_->GetSize().x / 2 + 7, 14, 0), 7.0f, glm::vec3(1, 1, 0), glm::vec2(-300.f));
+    game_level_ = std::make_unique<GameLevel>(ResourceManager::GetExecutablePath() + "/res/levels/level1", gm, GetWidth(), GetHeight() / 2);
+    player_ = std::make_unique<Player>(gm, glm::vec3(GetWidth() / 2.f - 37.5f, GetHeight() - 10.f, 0), glm::vec3(75, 10, 0), glm::vec3(0.2f, 0.5f, 0.4f), 200);
+    ball_ = std::make_unique<Ball>(gm, player_->GetPosition() - glm::vec3(-player_->GetSize().x / 2 + 7, 14, 0), 7.0f, glm::vec3(1, 1, 0), glm::vec2(-300.f));
 
     glfwSetFramebufferSizeCallback(GetWindow(), WindowSizeCallback);
 }
@@ -83,22 +83,22 @@ void Game::Render()
 
 void Game::Collision()
 {
-    BallCollision(player_);
+    BallCollision(player_.get());
     for (auto &block : game_level_->GetGameObjectsList())
     {
         if (!block->IsDestroyed())
         {
-            BallCollision(block);
+            BallCollision(block.get());
         }
     }
 }
 
-void Game::BallCollision(std::shared_ptr<GameObject> game_object)
+void Game::BallCollision(GameObject *game_object)
 {
-    CollisionInfo col_info = Collision::CheckBoxCollision(ball_, game_object);
+    CollisionInfo col_info = Collision::CheckBoxCollision(ball_.get(), game_object);
     if (std::get<0>(col_info))
     {
-        if (game_object != player_)
+        if (game_object != player_.get())
         {
             game_object->Destroy();
         }
@@ -110,7 +110,7 @@ void Game::BallCollision(std::shared_ptr<GameObject> game_object)
         else
         {
             ball_->SetVelocity(-ball_->GetVelocity());
-            if (game_object == player_)
+            if (game_object == player_.get())
             {
                 float player_center = player_->GetPosition().x + player_->GetSize().x / 2;
                 float distance = ball_->GetPosition().x + ball_->GetSize().x / 2 - player_center;

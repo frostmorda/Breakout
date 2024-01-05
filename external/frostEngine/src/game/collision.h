@@ -15,7 +15,7 @@ class Collision
 {
 public:
     Collision() = delete;
-    static CollisionInfo CheckBoxCollision(const std::shared_ptr<GameObject> &first, const std::shared_ptr<GameObject> &second);
+    static CollisionInfo CheckBoxCollision(GameObject *first, GameObject *second);
 
 private:
     static Direction VectorDirection(glm::vec2 target);

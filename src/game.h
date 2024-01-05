@@ -19,10 +19,10 @@ public:
     void Collision() override;
 
 private:
-    std::shared_ptr<Player> player_;
-    std::shared_ptr<GameLevel> game_level_;
-    std::shared_ptr<Ball> ball_;
-    void BallCollision(std::shared_ptr<GameObject> game_object);
+    std::unique_ptr<Player> player_;
+    std::unique_ptr<GameLevel> game_level_;
+    std::unique_ptr<Ball> ball_;
+    void BallCollision(GameObject* game_object);
 };
 
 #endif // SRC_GAME_H_

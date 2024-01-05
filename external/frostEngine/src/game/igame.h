@@ -47,7 +47,6 @@ private:
     unsigned int height_;
     GameState state_;
     bool Keys[1024];
-    std::unordered_map<std::string, std::shared_ptr<GameObject>> game_objects_;
     GLFWwindow *window_;
     float last_frame_ = 0;
     float delta_time_ = 0;

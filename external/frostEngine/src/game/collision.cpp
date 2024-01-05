@@ -1,6 +1,6 @@
 #include "collision.h"
 
-CollisionInfo Collision::CheckBoxCollision(const std::shared_ptr<GameObject> &first, const std::shared_ptr<GameObject> &second)
+CollisionInfo Collision::CheckBoxCollision(GameObject *first, GameObject *second)
 {
     glm::vec2 first_center(first->GetPosition().x + first->GetSize().x / 2, first->GetPosition().y + first->GetSize().y / 2);
     glm::vec2 second_center(second->GetPosition().x + second->GetSize().x / 2, second->GetPosition().y + second->GetSize().y / 2);

@@ -1,6 +1,6 @@
 #include "game_level.h"
 
-GameLevel::GameLevel(std::string &file_path, std::shared_ptr<GameModel> game_model, unsigned int level_width, unsigned int level_height)
+GameLevel::GameLevel(std::string &file_path, GameModel *game_model, unsigned int level_width, unsigned int level_height)
 {
     std::vector<std::vector<unsigned int>> data;
     ResourceManager::DataFromFile(file_path, data);

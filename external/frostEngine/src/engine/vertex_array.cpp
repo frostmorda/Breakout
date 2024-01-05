@@ -1,7 +1,7 @@
 #include "vertex_array.h"
 #include <iostream>
 
-VertexArray::VertexArray(const std::shared_ptr<VertexBuffer> &vertex_buffer, const VertexBufferLayout &layout)
+VertexArray::VertexArray(VertexBuffer* vertex_buffer, const VertexBufferLayout &layout)
 {
     glGenVertexArrays(1, &id_);
     Bind();

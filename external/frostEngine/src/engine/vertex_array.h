@@ -13,7 +13,7 @@ public:
     VertexArray() = delete;
     VertexArray(const VertexArray &) = delete;
     VertexArray &operator=(const VertexArray &) = delete;
-    VertexArray(const std::shared_ptr<VertexBuffer> &vertex_buffer, const VertexBufferLayout &layout);
+    VertexArray(VertexBuffer* vertex_buffer, const VertexBufferLayout &layout);
     VertexArray(VertexArray &&other) noexcept;
     VertexArray &operator=(VertexArray &&other) noexcept;
     ~VertexArray();

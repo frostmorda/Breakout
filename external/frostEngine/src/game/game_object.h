@@ -9,7 +9,7 @@
 class GameObject
 {
 public:
-    GameObject(std::shared_ptr<GameModel> game_model, glm::vec3 position, glm::vec3 size, glm::vec3 color, float rotation = 0.f);
+    GameObject(GameModel* game_model, glm::vec3 position, glm::vec3 size, glm::vec3 color, float rotation = 0.f);
     ~GameObject();
     void Draw();
 
@@ -31,7 +31,7 @@ private:
     glm::vec3 size_;
     glm::vec3 color_;
     float rotation_;
-    std::shared_ptr<GameModel> game_model_;
+    GameModel* game_model_;
     bool is_destroyed = false;
 };
 #endif // SRC_GAME_GAME_OBJECT_H_
