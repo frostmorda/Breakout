@@ -25,7 +25,7 @@ GameLevel::GameLevel(std::string &file_path, GameModel *game_model, unsigned int
                 {
                     color = glm::vec3(1, 0.643f, 0.255f);
                 }
-                objects_.push_back(std::make_shared<GameObject>(game_model, position, size, color));
+                objects_.push_back(std::make_unique<GameObject>(game_model, position, size, color));
             }
         }
     }
