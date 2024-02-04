@@ -13,16 +13,18 @@ public:
     VertexArray() = delete;
     VertexArray(const VertexArray &) = delete;
     VertexArray &operator=(const VertexArray &) = delete;
-    VertexArray(VertexBuffer* vertex_buffer, const VertexBufferLayout &layout);
+    VertexArray(VertexBuffer *vertex_buffer, const VertexBufferLayout &layout);
     VertexArray(VertexArray &&other) noexcept;
     VertexArray &operator=(VertexArray &&other) noexcept;
     ~VertexArray();
     void Bind() const;
     void Unbind() const;
+    void AddBuffer(VertexBuffer *vertex_buffer, const VertexBufferLayout &layout);
     const unsigned int GetSize() const { return size_; }
 
 private:
     unsigned int size_;
+    unsigned int elements_count_ = 0;
     GLuint id_;
 };
 #endif // SRC_ENGINE_VERTEX_ARRAY_H_

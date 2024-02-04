@@ -11,6 +11,7 @@ set(SOURCES
     src/engine/index_buffer.cpp
     src/engine/game_model.cpp
     src/engine/camera.cpp
+    src/engine/text.cpp
     src/game/igame.cpp
     src/game/collision.cpp
     src/game/game_object.cpp)

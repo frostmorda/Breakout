@@ -8,7 +8,7 @@ GameModel::GameModel()
     vertex_array_ = nullptr;
 }
 
-GameModel::GameModel(Shader* shader, Texture* texture, VertexArray* vertex_array, const glm::vec3 &position, const glm::vec3 &size, const float rotation, const glm::vec3 &color, const std::string &model_matrix_name, const std::string &game_model_color_name, const std::string &texture_name)
+GameModel::GameModel(Shader *shader, Texture *texture, VertexArray *vertex_array, const glm::vec3 &position, const glm::vec3 &size, const float rotation, const glm::vec3 &color, const std::string &model_matrix_name, const std::string &game_model_color_name, const std::string &texture_name)
     : shader_(shader), texture_(texture), vertex_array_(vertex_array), position_(position), size_(size), rotation_(rotation), color_(color), model_matrix_name_(model_matrix_name), game_model_color_name_(game_model_color_name), texture_name_(texture_name)
 {
 }
@@ -69,17 +69,17 @@ void GameModel::Draw()
     vertex_array_->Unbind();
 }
 
-void GameModel::SetShader(Shader* shader)
+void GameModel::SetShader(Shader *shader)
 {
     shader_ = shader;
 }
 
-void GameModel::SetTexture(Texture* texture)
+void GameModel::SetTexture(Texture *texture)
 {
     texture_ = texture;
 }
 
-void GameModel::SetVertexArray(VertexArray* vertex_array)
+void GameModel::SetVertexArray(VertexArray *vertex_array)
 {
     vertex_array_ = vertex_array;
 }

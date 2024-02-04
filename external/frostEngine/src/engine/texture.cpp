@@ -3,24 +3,24 @@
 #include "stb_image.h"
 #include <iostream>
 
-Texture::Texture(const std::string &path, GLuint wrap_s, GLuint wrap_t, GLuint min_filter, GLuint mag_filter)
-    : wrap_s_(wrap_s), wrap_t_(wrap_t), min_filter_(min_filter), mag_filter_(mag_filter)
+Texture::Texture(const std::string &path, int format, GLuint wrap_s, GLuint wrap_t, GLuint min_filter, GLuint mag_filter)
+    : format_(format), wrap_s_(wrap_s), wrap_t_(wrap_t), min_filter_(min_filter), mag_filter_(mag_filter)
 {
     glGenTextures(1, &id_);
-    int widht, height, chanel;
-    unsigned char *data = stbi_load(path.c_str(), &widht, &height, &chanel, 0);
+    int widht, height, comp;
+    unsigned char *data = stbi_load(path.c_str(), &widht, &height, &comp, 0);
     if (data)
     {
         GLenum format;
-        if (chanel == 1)
+        if (comp == 1)
         {
             format = GL_RED;
         }
-        else if (chanel == 3)
+        else if (comp == 3)
         {
             format = GL_RGB;
         }
-        else if (chanel == 4)
+        else if (comp == 4)
         {
             format = GL_RGBA;
         }

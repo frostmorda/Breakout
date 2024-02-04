@@ -2,6 +2,7 @@
 #define SRC_GAME_H_
 #include "../external/frostEngine/src/game/igame.h"
 #include "../external/frostEngine/src/engine/resource_manager.h"
+#include "../external/frostEngine/src/engine/text.h"
 #include "game_level.h"
 #include "player.h"
 #include "ball.h"

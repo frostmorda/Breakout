@@ -20,6 +20,8 @@ void Game::Initialization()
     ResourceManager::LoadTexture("background", ResourceManager::GetExecutablePath() + "res/textures/background.png");
     ResourceManager::LoadGameModel("block", "block", "block", "block", glm::vec3(0, 0, 0), glm::vec3(1, 1, 0), 0, glm::vec3(0.3f, 0.5f, 0.7f), "model", "color", "image");
     ResourceManager::LoadGameModel("background", "block", "background", "block", glm::vec3(0, 0, 0), glm::vec3(1, 1, 0), 0, glm::vec3(0.3f, 0.5f, 0.7f), "model", "color", "image");
+    ResourceManager::LoadGlyphs(ResourceManager::GetExecutablePath() + "res/font/en_font.png", ResourceManager::GetExecutablePath() + "res/font/abc", "block");
+
     auto gm = ResourceManager::GetGameModel("block");
     auto bg = ResourceManager::GetGameModel("background");
 
@@ -84,11 +86,16 @@ void Game::Render()
             SetBallToPlayer();
         }
     }
+    Text t("Lives");
+    auto health = player_->GetHealth();
+    Text l(std::to_string(health));
+    t.Draw();
+    l.SetPosition(glm::vec3(180, 0, 0));
+    l.Draw();
     ball_->Draw();
     game_level_->Draw();
     player_->Draw();
     background_->Draw();
-
     glfwSwapBuffers(GetWindow());
     glfwPollEvents();
 }
